@@ -1,4 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import="com.sds.icto.guestbook.vo.guestbookVo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+%>
+<%
+guestbookVo vo = new guestbookVo();
 %>
 <html>
 <head>
@@ -6,9 +13,8 @@
 <title>방명록</title>
 </head>
 <body>
-	<form action="/guestbook3/index" method="post" >
-	<input type='hidden' name="no" value="<%=Integer.parseInt(request.getParameter("no")) %>">
-	<input type='hidden' name="a" value="delete">
+	<form action="/guestbook3/delete" method="post" >
+	<input type='hidden' name="no" value="${param.no }">
 	<table>
 		<tr>
 			<td>비밀번호</td>

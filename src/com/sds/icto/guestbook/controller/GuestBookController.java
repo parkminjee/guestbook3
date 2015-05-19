@@ -25,12 +25,21 @@ public class GuestBookController {
 		return "/views/index.jsp";
 	}
 	
-	@RequestMapping("/deleteform")
-	public String deleteform(){
-		return "views/deleteform.jsp";
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String deleteform(@RequestParam int no){
+		
+		return "/views/deleteform.jsp";
 	}
 	
-	@RequestMapping(value="/insert",method=RequestMethod.POST)
+	@RequestMapping(value="/delete",method=RequestMethod.POST)
+	public String delete(@RequestParam int no,
+			@RequestParam String pwd){
+		
+		guestbookDao.delete(no, pwd);
+		return "redirect:/index";
+	}
+	
+	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String insert(@RequestParam("name") String id,
 			@RequestParam String pwd,
 			@RequestParam String meg){

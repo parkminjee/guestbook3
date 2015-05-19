@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page import="com.sds.icto.guestbook.vo.guestbookVo" %>
 <%@ page import="com.sds.icto.guestbook.dao.guestbookDao" %>
 <%@ page import="java.util.List" %>
@@ -13,8 +16,7 @@
 <title>방명록</title>
 </head>
 <body>
-	<form action="/guestbook3/index" method="post">
-	<input type='hidden' name="a" value="add">
+	<form action="/guestbook3/add" method="post">
 	<table border=1 width=500>
 		<tr>
 			<td>이름</td><td><input type="text" name="name"></td>
@@ -37,7 +39,7 @@
 			<td><%=vo.getNo() %></td>
 			<td><%=vo.getId() %></td>
 			<td><%=vo.getDate() %></td>
-			<td><a href="deleteform.jsp?no=<%=vo.getNo()%>">삭제</a></td>
+			<td><a href="/guestbook3/delete?no=<%=vo.getNo() %>">삭제</a></td>
 		</tr>
 		<tr>
 			<td colspan=4><%=vo.getMeg() %></td>
