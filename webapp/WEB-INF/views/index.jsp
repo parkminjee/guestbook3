@@ -2,14 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page import="com.sds.icto.guestbook.vo.guestbookVo" %>
-<%@ page import="com.sds.icto.guestbook.dao.guestbookDao" %>
 <%@ page import="java.util.List" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-%>
-<%
-	guestbookDao dao = new guestbookDao();
-	List<guestbookVo> list = dao.fetchList();
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,23 +26,20 @@
 	</table>
 	</form>
 	<br>
-	<%
-		for( guestbookVo vo : list ) {
-	%>
+	
+	<c:forEach items="${list }" var="vo">
 	<table width=510 border=1>
 		<tr>
-			<td><%=vo.getNo() %></td>
-			<td><%=vo.getId() %></td>
-			<td><%=vo.getDate() %></td>
-			<td><a href="/guestbook3/delete?no=<%=vo.getNo() %>">삭제</a></td>
+			<td>${vo.no }</td>
+			<td>${vo.id }</td>
+			<td>${vo.date }</td>
+			<td><a href="/guestbook3/delete?no=${vo.no }">삭제</a></td>
 		</tr>
 		<tr>
-			<td colspan=4><%=vo.getMeg() %></td>
+			<td colspan=4>${vo.meg }</td>
 		</tr>
 	</table>
 	<br>
-	<%
-		}
-	%>
+	</c:forEach>
 </body>
 </html>

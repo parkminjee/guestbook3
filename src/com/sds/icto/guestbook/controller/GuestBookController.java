@@ -9,33 +9,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sds.icto.guestbook.dao.guestbookDao;
+import com.sds.icto.guestbook.dao.GuestbookDao;
 import com.sds.icto.guestbook.vo.guestbookVo;
 
 
 @Controller
 public class GuestBookController {
 	@Autowired  //spring에 emaillisdao 객체 생성
-	guestbookDao guestbookDao;
+	GuestbookDao guestbookDao;
 	
 	@RequestMapping("/index")
 	public String index(Model model) {
 		List<guestbookVo> list = guestbookDao.fetchList();
 		model.addAttribute("list",list);
-		return "/views/index.jsp";
+		return "index";
 	}
 	
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	public String deleteform(@RequestParam int no){
 		
-		return "/views/deleteform.jsp";
+		return "deleteform";
 	}
 	
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
 	public String delete(@RequestParam int no,
 			@RequestParam String pwd){
 		
-		guestbookDao.delete(no, pwd);
+		guestbookDao.delete(no,pwd);
 		return "redirect:/index";
 	}
 	
